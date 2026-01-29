@@ -1,4 +1,4 @@
-# 👋 Salut, moi c’est Mantinou Bello
+# 👋 Salut, moi c’est Matinou Bello
 
 Je suis **développeur Full Stack / Étudiant en Architecture Logicielle** à **ESGIS Bénin**.  
 Passionné par le **développement web**, le **mobile**, et les **technologies innovantes**.
