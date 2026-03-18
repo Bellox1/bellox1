@@ -715,10 +715,11 @@
 
     .hero-photo-ring {
       position: absolute;
-      inset: -20px;
-      border: 1px dashed rgba(124, 106, 245, .2);
+      inset: -15px;
+      border: 2.5px dashed rgba(124, 106, 245, .45);
       border-radius: 50%;
       pointer-events: none;
+      filter: drop-shadow(0 0 10px var(--glow));
       animation: spin 30s linear infinite;
     }
 
@@ -1548,7 +1549,17 @@
       color: var(--text);
       font-weight: 600;
       margin-top: 2px;
-      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 170px;
+    }
+
+    @media(max-width:400px) {
+      .ccard-val {
+        max-width: 140px;
+        font-size: 0.72rem;
+      }
     }
 
     @media(max-width:480px) {
@@ -1681,8 +1692,8 @@
           <button class="mob-lang-btn active" data-ml="fr">FR</button>
           <button class="mob-lang-btn" data-ml="en">EN</button>
         </div>
-        <a href="mailto:mantinoubello123@gmail.com" class="mob-cta-btn">
-          <span data-fr>Me contacter</span><span data-en>Contact me</span>
+        <a href="https://wa.me/2290146862536" target="_blank" class="mob-cta-btn">
+          <span data-fr>Mon WhatsApp</span><span data-en>My WhatsApp</span>
         </a>
       </div>
     </div>
@@ -1693,8 +1704,7 @@
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
         <div class="logo-dot"></div>
-        <img src="moi.jpg" alt="Matinou Bello"
-          onerror="this.src='https://avatars.githubusercontent.com/u/197826246?v=4'">
+        <img src="https://avatars.githubusercontent.com/u/197826246?v=4" alt="Matinou Bello">
         <span class="logo-name">Matinou Bello</span>
       </a>
       <ul class="nav-links">
@@ -1708,13 +1718,13 @@
           <button class="lang-btn active" data-l="fr">FR</button>
           <button class="lang-btn" data-l="en">EN</button>
         </div>
-        <a href="mailto:mantinoubello123@gmail.com" class="nav-cta">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <rect x="2" y="4" width="20" height="16" rx="2" />
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        <a href="https://wa.me/2290146862536" target="_blank" class="nav-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
           </svg>
-          <span class="cta-txt" data-fr>Me contacter</span>
-          <span class="cta-txt" data-en>Contact me</span>
+          <span class="cta-txt" data-fr>WhatsApp</span>
+          <span class="cta-txt" data-en>WhatsApp</span>
         </a>
         <button class="ham-btn" id="hamBtn" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -1738,8 +1748,8 @@
             <strong data-fr>Développeur Full Stack</strong>
             <strong data-en>Full Stack Developer</strong>
             &nbsp;·&nbsp;
-            <span data-fr>Étudiant L3 Architecture Logicielle</span>
-            <span data-en>L3 Software Architecture Student</span>
+            <span data-fr>Fin de Licence 3 Architecture Logicielle (2025-2026)</span>
+            <span data-en>Finishing L3 Software Architecture (2025-2026)</span>
           </p>
           <p class="hero-desc">
             <span data-fr>👋 Passionné par le développement web &amp; mobile, les architectures logicielles modernes et
@@ -1773,7 +1783,8 @@
               </svg>
               Cotonou, Bénin
             </span>
-            <span class="chip"><img src="https://cdn.simpleicons.org/github/9997b0" alt="gh"> 32 repos</span>
+            <span class="chip"><img src="https://cdn.simpleicons.org/github/9997b0" alt="gh"> <span
+                class="repo-count">—</span> repos</span>
             <span class="chip">🏆 YOLO · Pull Shark · Quickdraw</span>
             <span class="chip"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="l"> Laravel · React ·
               TypeScript</span>
@@ -1797,7 +1808,7 @@
       <!-- STATS -->
       <div class="stats-row reveal">
         <div class="stat-c">
-          <div class="stat-big">32</div>
+          <div class="stat-big repo-count">—</div>
           <div class="stat-sm" data-fr>Repositories</div>
           <div class="stat-sm" data-en>Repositories</div>
         </div>
@@ -1858,23 +1869,19 @@
                 alt="Angular"><span>Angular</span></div>
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
                 alt="Tailwind"><span>Tailwind</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/alpinedotjs/8BC0D0"
-                alt="Alpine"><span>Alpine.js</span></div>
           </div>
         </div>
         <div class="skill-card reveal d2">
-          <div class="skill-card-head">Backend</div>
+          <div class="skill-card-head" data-fr>Backend & Base de données</div>
+          <div class="skill-card-head" data-en>Backend & Databases</div>
           <div class="icons-grid">
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP"><span>PHP</span></div>
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/laravel/FF2D20"
                 alt="Laravel"><span>Laravel</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python"><span>Python</span>
-            </div>
             <div class="icon-pill"><img src="https://unpkg.com/simple-icons@v11/icons/nodedotjs.svg"
                 alt="Node"><span>Node.js</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL"><span>MySQL</span>
-            </div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/sqlite/003B57" alt="SQLite"><span>SQLite</span>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt="SQL"><span>SQL
+                (MySQL)</span>
             </div>
           </div>
         </div>
@@ -1882,17 +1889,8 @@
           <div class="skill-card-head" data-fr>Mobile & Autres</div>
           <div class="skill-card-head" data-en>Mobile & Others</div>
           <div class="icons-grid">
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart"><span>Dart</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/flutter/02569B"
-                alt="Flutter"><span>Flutter</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/openjdk/007396" alt="Java"><span>Java</span>
-            </div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/c/A8B9CC" alt="C"><span>C</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff"
-                alt="Next"><span>Next.js</span></div>
-            <div class="icon-pill"><img src="https://unpkg.com/simple-icons@v11/icons/vite.svg"
-                alt="Vite"><span>Vite</span>
-            </div>
+            <p style="font-size: 0.8rem; color: var(--text3);" data-fr>Projets en cours...</p>
+            <p style="font-size: 0.8rem; color: var(--text3);" data-en>Projects incoming...</p>
           </div>
         </div>
         <div class="skill-card reveal d2">
@@ -1900,32 +1898,56 @@
           <div class="skill-card-head" data-en>Tools & DevOps</div>
           <div class="icons-grid">
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/git/F05032" alt="Git"><span>Git</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"><span>GitHub</span>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker"><span>Docker</span>
             </div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/vercel/ffffff" alt="Vercel"><span>Vercel</span>
+            <div class="icon-pill"><img src="https://img.icons8.com/color/48/oracle.png" alt="Oracle"><span>Oracle
+                PL/SQL</span>
             </div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/composer/885630"
-                alt="Composer"><span>Composer</span></div>
-            <div class="icon-pill"><img src="https://img.icons8.com/color/48/visual-studio-code-2019.png"
-                alt="VSCode"><span>VS
-                Code</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/postman/FF6C37"
-                alt="Postman"><span>Postman</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/yarn/2C8EBB" alt="Yarn"><span>Yarn</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash"><span>Bash</span>
+            </div>
           </div>
         </div>
         <div class="learning-strip reveal">
           <div class="skill-card-head" data-fr>🌱 En apprentissage</div>
           <div class="skill-card-head" data-en>🌱 Currently learning</div>
           <div class="learn-pills">
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React Native"><span
+                data-fr>React Native</span><span data-en>React Native</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman"><span
+                data-fr>Postman</span><span data-en>Postman</span></div>
             <div class="learn-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React"><span data-fr>React
-                avancé</span><span data-en>Advanced React</span></div>
-            <div class="learn-pill"><img src="https://cdn.simpleicons.org/angular/DD0031" alt="Angular"><span
-                data-fr>Angular avancé</span><span data-en>Advanced Angular</span></div>
+                (Approfondir)</span><span data-en>React (Deepening)</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel"><span
+                data-fr>Laravel
+                (Approfondir)</span><span data-en>Laravel (Deepening)</span></div>
             <div class="learn-pill"><img src="https://unpkg.com/simple-icons@v11/icons/openai.svg" alt="AI"><span
                 data-fr>IA
                 appliquée</span><span data-en>AI-powered dev</span></div>
-            <div class="learn-pill"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">Docker</div>
-            <div class="learn-pill"><img src="https://cdn.simpleicons.org/graphql/E10098" alt="GraphQL">GraphQL</div>
+          </div>
+        </div>
+        <div class="skill-card reveal d1">
+          <div class="skill-card-head" data-fr>Notions & Bases</div>
+          <div class="skill-card-head" data-en>Basics & Notions</div>
+          <div class="icons-grid">
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python"><span>Python</span>
+            </div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/openjdk/007396" alt="Java"><span>Java</span>
+            </div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/c/A8B9CC" alt="C"><span>C</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart"><span>Dart</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/flutter/02569B"
+                alt="Flutter"><span>Flutter</span></div>
+            <div class="icon-pill"><img src="https://img.icons8.com/color/48/microsoft-excel-2019.png"
+                alt="Excel"><span>Excel</span></div>
+            <div class="icon-pill"><img src="https://img.icons8.com/color/48/microsoft-powerpoint-2019.png"
+                alt="PowerPoint"><span>PowerPoint</span></div>
+            <div class="icon-pill"><img src="https://img.icons8.com/color/48/power-bi.png" alt="Power BI"><span>Power
+                BI</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/cisco/049FD9" alt="CCNA"><span>CCNA 1 &
+                2</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mongodb/47A248" alt="NoSQL"><span>NoSQL
+                (MongoDB)</span></div>
           </div>
         </div>
       </div>
@@ -1942,7 +1964,8 @@
           <h2 class="s-title" data-en>My GitHub projects</h2>
         </div>
         <a href="https://github.com/Bellox1?tab=repositories" target="_blank" class="all-btn">
-          <span data-fr>Voir tout (32 repos)</span><span data-en>View all (32 repos)</span>
+          <span data-fr>Voir tout (<span class="repo-count">—</span> repos)</span><span data-en>View all (<span
+              class="repo-count">—</span> repos)</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
@@ -2026,7 +2049,8 @@
           <div class="pcard-img-wrap">
             <img class="pcard-img" src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80"
               alt="Nonvi Voyage+">
-            <div class="pcard-lang-badge"><img src="https://cdn.simpleicons.org/php/777BB4" alt=""> PHP</div>
+            <div class="pcard-lang-badge"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt=""> Laravel · React
+              Native</div>
           </div>
           <div class="pcard-body">
             <div class="pcard-top"><span class="pcard-name">Nonvi Voyage+</span>
@@ -2035,14 +2059,15 @@
                   <path d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg></div>
             </div>
-            <p class="pcard-desc" data-fr>Application de gestion de voyages et réservations avec Laravel. Backend
-              complet, gestion d'itinéraires. 12 commits.</p>
-            <p class="pcard-desc" data-en>Travel management and booking app with Laravel. Complete backend, itinerary
-              management. 12 commits.</p>
-            <div class="pcard-tags"><span class="ptag">Laravel</span><span class="ptag">PHP</span><span
-                class="ptag">Blade</span></div>
+            <p class="pcard-desc" data-fr>Application de gestion de voyages et réservations développée avec Laravel et
+              React Native. Backend robuste et application mobile intuitive.</p>
+            <p class="pcard-desc" data-en>Travel and booking management application built with Laravel and React Native.
+              Robust backend and intuitive mobile app.</p>
+            <div class="pcard-tags"><span class="ptag">Laravel</span><span class="ptag">React Native</span><span
+                class="ptag">PHP</span></div>
             <div class="pcard-foot">
-              <div class="pcard-stat"><span class="lang-dot" style="background:#a855f7"></span> PHP 76%</div>
+              <div class="pcard-stat"><span class="lang-dot" style="background:#61DAFB"></span> React Native / Laravel
+              </div>
             </div>
           </div>
         </a>
@@ -2174,7 +2199,8 @@
         <div class="ach-card reveal">
           <div class="ach-icon">🎯</div>
           <div>
-            <div class="ach-name">YOLO</div>
+            <div class="ach-name" data-fr>YOLO</div>
+            <div class="ach-name" data-en>YOLO</div>
             <div class="ach-desc" data-fr>Merged un PR sans review</div>
             <div class="ach-desc" data-en>Merged a PR without review</div>
           </div>
@@ -2182,7 +2208,8 @@
         <div class="ach-card reveal d1">
           <div class="ach-icon">🦈</div>
           <div>
-            <div class="ach-name">Pull Shark</div>
+            <div class="ach-name" data-fr>Pull Shark</div>
+            <div class="ach-name" data-en>Pull Shark</div>
             <div class="ach-desc" data-fr>Pull requests mergés avec succès</div>
             <div class="ach-desc" data-en>Successfully merged pull requests</div>
           </div>
@@ -2190,7 +2217,8 @@
         <div class="ach-card reveal d2">
           <div class="ach-icon">⚡</div>
           <div>
-            <div class="ach-name">Quickdraw</div>
+            <div class="ach-name" data-fr>Quickdraw</div>
+            <div class="ach-name" data-en>Quickdraw</div>
             <div class="ach-desc" data-fr>Réactivité exceptionnelle</div>
             <div class="ach-desc" data-en>Exceptional responsiveness</div>
           </div>
@@ -2207,10 +2235,10 @@
         <h2 class="s-title">Fun facts</h2>
       </div>
       <div class="facts-col">
-        <div class="fact-row reveal"><span class="fact-emoji">🎧</span>
-          <p class="fact-txt" data-fr>Je code mieux avec de la musique — la playlist fait partie de l'architecture du
-            projet.</p>
-          <p class="fact-txt" data-en>I code better with music — the playlist is part of the project architecture.</p>
+        <div class="fact-row reveal"><span class="fact-emoji">�</span>
+          <p class="fact-txt" data-fr>Jeu sportif : Basket-ball & Football — l'esprit d'équipe sur le terrain comme dans
+            le code.</p>
+          <p class="fact-txt" data-en>Sports fan: Basketball & Football — teamwork on the field and in the code.</p>
         </div>
         <div class="fact-row reveal"><span class="fact-emoji">⚡</span>
           <p class="fact-txt" data-fr>Toujours curieux d'apprendre de nouvelles technos — chaque semaine, un nouvel
@@ -2292,7 +2320,8 @@
 
   <footer>
     © 2026 Matinou Bello · Full Stack Developer · ESGIS Bénin ·
-    <a href="https://github.com/Bellox1" target="_blank" style="color:var(--accent)">@Bellox1</a>
+    <a href="https://github.com/Bellox1" target="_blank" style="color:var(--accent)">@Bellox1</a> ·
+    <span data-fr>Licence MIT</span><span data-en>MIT License</span>
   </footer>
 
   <script>
@@ -2349,6 +2378,16 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.07 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* ── DYNAMIC REPO COUNT ── */
+    fetch('https://api.github.com/users/Bellox1')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.public_repos !== undefined) {
+          document.querySelectorAll('.repo-count').forEach(el => el.textContent = data.public_repos);
+        }
+      })
+      .catch(e => console.error('Error fetching repo count:', e));
   </script>
 </body>
 
