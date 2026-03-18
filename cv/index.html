@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matinou Bello — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #11111a;
+    --surface2: #1a1a28;
+    --border: #2a2a3e;
+    --accent: #6ee7f7;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --card: #13131f;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+ 
+  /* ── GRID NOISE BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(110, 231, 247, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 231, 247, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  /* ── BLOBS ── */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    animation: blobDrift 18s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 500px; height: 500px; background: rgba(167,139,250,0.10); top: -100px; right: -100px; animation-delay: 0s; }
+  .blob-2 { width: 400px; height: 400px; background: rgba(110,231,247,0.08); bottom: 100px; left: -100px; animation-delay: -7s; }
+  .blob-3 { width: 300px; height: 300px; background: rgba(52,211,153,0.06); top: 40%; left: 40%; animation-delay: -13s; }
+ 
+  @keyframes blobDrift {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(40px, 30px) scale(1.08); }
+  }
+ 
+  /* ── WRAPPER ── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+ 
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+ 
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+ 
+  /* ── HERO ── */
+  #hero {
+    padding: 100px 0 80px;
+    position: relative;
+  }
+ 
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent3);
+  }
+ 
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+ 
+  .hero-name span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+ 
+  .hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--muted);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s forwards;
+  }
+ 
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+    margin-bottom: 36px;
+  }
+ 
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+ 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+  }
+ 
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0f;
+    font-weight: 600;
+  }
+  .btn-primary:hover { background: #a0f0ff; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(110,231,247,0.3); }
+ 
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+ 
+  /* ── BADGES HERO ── */
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s forwards;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    animation: pulse 2s infinite;
+  }
+ 
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+ 
+  /* ── SECTION LAYOUT ── */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+ 
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+ 
+  .section-num {
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+ 
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+ 
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+ 
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+ 
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+ 
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+ 
+  @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+ 
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.25s;
+  }
+  .skill-group:hover { border-color: var(--accent2); }
+ 
+  .skill-group-title {
+    font-size: 0.7rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 18px;
+  }
+ 
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+ 
+  .skill-tag {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: default;
+  }
+ 
+  .tag-blade { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+  .tag-php   { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
+  .tag-js    { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+  .tag-ts    { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+  .tag-react { background: rgba(110,231,247,0.12); color: var(--accent); border: 1px solid rgba(110,231,247,0.25); }
+  .tag-css   { background: rgba(52,211,153,0.12); color: var(--accent3); border: 1px solid rgba(52,211,153,0.25); }
+  .tag-dart  { background: rgba(251,113,133,0.12); color: #fb7185; border: 1px solid rgba(251,113,133,0.25); }
+  .tag-py    { background: rgba(234,179,8,0.12); color: #eab308; border: 1px solid rgba(234,179,8,0.25); }
+  .tag-c     { background: rgba(148,163,184,0.12); color: #94a3b8; border: 1px solid rgba(148,163,184,0.25); }
+  .tag-learn { background: rgba(110,231,247,0.06); color: var(--muted); border: 1px dashed var(--border); }
+ 
+  .skill-tag:hover { transform: translateY(-2px) scale(1.04); filter: brightness(1.15); }
+ 
+  /* ── PROJECTS ── */
+  .projects-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+ 
+  @media (max-width: 720px) { .projects-featured { grid-template-columns: 1fr; } }
+ 
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+ 
+  .project-card:hover { border-color: rgba(110,231,247,0.3); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .project-card:hover::after { transform: scaleX(1); }
+ 
+  .project-card.featured { grid-column: span 2; }
+  @media (max-width: 720px) { .project-card.featured { grid-column: span 1; } }
+ 
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+ 
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+ 
+  .project-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+ 
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+  }
+ 
+  .project-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+ 
+  .lang-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .lang-blade { background: #f87171; }
+  .lang-php   { background: #a78bfa; }
+  .lang-ts    { background: #60a5fa; }
+  .lang-js    { background: #fbbf24; }
+  .lang-html  { background: #fb923c; }
+ 
+  .project-stats {
+    display: flex;
+    gap: 12px;
+  }
+ 
+  .project-stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+ 
+  .project-arrow {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .project-card:hover .project-arrow { background: var(--accent); color: #0a0a0f; }
+ 
+  /* ── ALL REPOS TABLE ── */
+  .repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+ 
+  .repo-mini {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .repo-mini:hover { border-color: var(--accent2); transform: translateY(-2px); }
+ 
+  .repo-mini-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+ 
+  .repo-mini-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+  }
+ 
+  /* ── GITHUB STATS BANNERS ── */
+  .gh-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  @media (max-width: 640px) { .gh-stats { grid-template-columns: 1fr; } }
+ 
+  .gh-stats img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: block;
+  }
+ 
+  /* ── FUN FACTS ── */
+  .facts-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+ 
+  .fact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    transition: border-color 0.2s;
+  }
+  .fact-item:hover { border-color: var(--accent3); }
+ 
+  .fact-emoji { font-size: 1.4rem; flex-shrink: 0; }
+ 
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+ 
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+  }
+  .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+ 
+  .contact-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .icon-email { background: rgba(110,231,247,0.12); }
+  .icon-gh    { background: rgba(167,139,250,0.12); }
+  .icon-li    { background: rgba(96,165,250,0.12); }
+  .icon-wa    { background: rgba(52,211,153,0.12); }
+ 
+  .contact-info { display: flex; flex-direction: column; gap: 3px; }
+  .contact-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .contact-value { font-size: 0.82rem; color: var(--text); }
+ 
+  /* ── ACHIEVEMENTS ── */
+  .achievements-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+  }
+ 
+  .achievement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.78rem;
+  }
+  .achievement-icon { font-size: 1.2rem; }
+  .achievement-name { color: var(--text); font-weight: 500; }
+  .achievement-sub  { font-size: 0.65rem; color: var(--muted); }
+ 
+  /* ── SUMMARY ── */
+  #summary {
+    background: linear-gradient(135deg, rgba(110,231,247,0.06), rgba(167,139,250,0.06));
+    border-radius: 20px;
+    border: 1px solid rgba(110,231,247,0.15);
+    padding: 60px 48px;
+    margin: 0 0 80px;
+  }
+ 
+  @media (max-width: 600px) { #summary { padding: 36px 24px; } }
+ 
+  .summary-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.8;
+    color: var(--text);
+  }
+ 
+  .summary-text em {
+    font-style: italic;
+    color: var(--accent);
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+ 
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+ 
+  /* ── DIVIDER ── */
+  .divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin-bottom: 24px;
+  }
+</style>
+</head>
+<body>
+ 
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+ 
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">MB//</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+ 
+<!-- ── HERO ── -->
+<section id="hero" style="border-top:none">
+  <div class="wrapper">
+    <p class="hero-eyebrow">Disponible pour collaboration</p>
+    <h1 class="hero-name">
+      Matinou<span>Bello.</span>
+    </h1>
+    <p class="hero-title">Full Stack Developer &amp; Software Architecture Student</p>
+    <p class="hero-desc">
+      👋 Salut, moi c'est Matinou Bello. Développeur Full Stack passionné, étudiant en Licence 3
+      Architecture Logicielle à ESGIS Bénin. Je construis des expériences web et mobile qui
+      résolvent de vrais problèmes avec des technologies modernes.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/Bellox1" target="_blank" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub @Bellox1
+      </a>
+      <a href="mailto:mantinoubello123@gmail.com" class="btn btn-outline">
+        ✉️ Me contacter
+      </a>
+    </div>
+ 
+    <div class="hero-badges">
+      <span class="badge"><span class="dot"></span>Cotonou, Bénin</span>
+      <span class="badge">🎓 ESGIS — L3 Architecture Logicielle</span>
+      <span class="badge">⚡ 32 repositories publics</span>
+      <span class="badge">🏆 YOLO · Pull Shark · Quickdraw</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── ABOUT / STATS ── -->
+<section>
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">01.</span>
+      <h2 class="section-title">Statistiques GitHub</h2>
+    </div>
+ 
+    <div class="stats-row reveal">
+      <div class="stat-card">
+        <div class="stat-num">32</div>
+        <div class="stat-label">Repositories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Following</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Followers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Stars reçues</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Achievements</div>
+      </div>
+    </div>
+ 
+    <div class="gh-stats reveal">
+      <img src="https://github-readme-stats.vercel.app/api?username=Bellox1&show_icons=true&theme=tokyonight&hide_border=true&bg_color=11111a&title_color=6ee7f7&text_color=e8e8f0&icon_color=a78bfa" alt="GitHub Stats Matinou Bello" onerror="this.style.display='none'">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Bellox1&layout=compact&theme=tokyonight&hide_border=true&bg_color=11111a&title_color=6ee7f7&text_color=e8e8f0" alt="Top Languages Matinou Bello" onerror="this.style.display='none'">
+    </div>
+ 
+    <div class="achievements-row reveal">
+      <div class="achievement">
+        <span class="achievement-icon">🎯</span>
+        <div>
+          <div class="achievement-name">YOLO</div>
+          <div class="achievement-sub">Merged un PR sans review</div>
+        </div>
+      </div>
+      <div class="achievement">
+        <span class="achievement-icon">🦈</span>
+        <div>
+          <div class="achievement-name">Pull Shark</div>
+          <div class="achievement-sub">Pull requests mergés</div>
+        </div>
+      </div>
+      <div class="achievement">
+        <span class="achievement-icon">⚡</span>
+        <div>
+          <div class="achievement-name">Quickdraw</div>
+          <div class="achievement-sub">Réactivité exceptionnelle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">02.</span>
+      <h2 class="section-title">Compétences</h2>
+    </div>
+ 
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-js">HTML5</span>
+          <span class="skill-tag tag-css">CSS3</span>
+          <span class="skill-tag tag-js">JavaScript</span>
+          <span class="skill-tag tag-ts">TypeScript</span>
+          <span class="skill-tag tag-react">React</span>
+          <span class="skill-tag tag-react">Angular</span>
+          <span class="skill-tag tag-css">TailwindCSS</span>
+        </div>
+      </div>
+ 
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-php">PHP</span>
+          <span class="skill-tag tag-php">Laravel</span>
+          <span class="skill-tag tag-blade">Blade</span>
+          <span class="skill-tag tag-py">Python</span>
+          <span class="skill-tag tag-c">C</span>
+        </div>
+      </div>
+ 
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Mobile &amp; Autres</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-dart">Dart</span>
+          <span class="skill-tag tag-dart">Flutter</span>
+          <span class="skill-tag tag-c">Java</span>
+          <span class="skill-tag tag-css">Alpine.js</span>
+          <span class="skill-tag tag-js">Vite</span>
+        </div>
+      </div>
+ 
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// 🌱 En apprentissage</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-learn">React avancé</span>
+          <span class="skill-tag tag-learn">Angular avancé</span>
+          <span class="skill-tag tag-learn">Architecture logicielle</span>
+          <span class="skill-tag tag-learn">IA &amp; Dev</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">03.</span>
+      <h2 class="section-title">Projets phares</h2>
+    </div>
+ 
+    <!-- FEATURED PROJECTS -->
+    <div class="projects-featured">
+ 
+      <!-- SpeedHome — FEATURED -->
+      <a href="https://github.com/Bellox1/SpeedHome" target="_blank" class="project-card featured reveal">
+        <div class="project-header">
+          <div>
+            <div class="project-name">🏠 SpeedHome</div>
+          </div>
+          <div class="project-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Plateforme complète de gestion et de location immobilière développée avec Laravel 12.
+          Met en relation propriétaires et locataires via un front-office public, un espace propriétaire
+          (gestion d'annonces, galerie photos, statut) et un back-office administrateur (modération,
+          gestion des utilisateurs, suivi des contacts). Stack : Laravel · Blade · TailwindCSS · Alpine.js · Vite.
+        </p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-blade"></span> Blade / PHP / CSS
+          </div>
+          <div class="project-stats">
+            <span class="project-stat">⭐ 1</span>
+            <span class="project-stat">🍴 0</span>
+            <span class="project-stat">👁 0</span>
+          </div>
+        </div>
+      </a>
+ 
+      <!-- ValideEtu -->
+      <a href="https://github.com/Bellox1/ValideEtu" target="_blank" class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">🎓 ValideEtu</div>
+          <div class="project-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Application web de validation étudiante déployée en production sur Vercel. Construite
+          en TypeScript avec React + TailwindCSS. Interface intuitive pour la gestion académique.
+        </p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-ts"></span> TypeScript 95%
+          </div>
+          <div class="project-stats">
+            <span class="project-stat">⭐ 0</span>
+            <span class="project-stat">🍴 0</span>
+            <span class="project-stat">👁 1</span>
+          </div>
+        </div>
+      </a>
+ 
+      <!-- nonvi_voyage_plus -->
+      <a href="https://github.com/Bellox1/nonvi_voyage_plus" target="_blank" class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">✈️ Nonvi Voyage+</div>
+          <div class="project-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Application de gestion de voyages développée avec Laravel (PHP 76% · Blade 23%).
+          12 commits enregistrés. Projet orienté service de réservation et gestion itinéraires.
+        </p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-php"></span> PHP / Laravel / Blade
+          </div>
+          <div class="project-stats">
+            <span class="project-stat">⭐ 0</span>
+            <span class="project-stat">🍴 0</span>
+            <span class="project-stat">👁 1</span>
+          </div>
+        </div>
+      </a>
+ 
+      <!-- e-commerce -->
+      <a href="https://github.com/Bellox1/e-commerce" target="_blank" class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">🛒 E-Commerce</div>
+          <div class="project-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Projet e-commerce moderne en TypeScript. Catalogue produit, panier et fonctionnalités
+          d'achat en ligne. Construit avec les dernières pratiques frontend.
+        </p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-ts"></span> TypeScript
+          </div>
+          <div class="project-stats">
+            <span class="project-stat">⭐ 0</span>
+            <span class="project-stat">🍴 0</span>
+          </div>
+        </div>
+      </a>
+ 
+      <!-- bellox1.github.io -->
+      <a href="https://github.com/Bellox1/bellox1.github.io" target="_blank" class="project-card reveal">
+        <div class="project-header">
+          <div class="project-name">🌐 Portfolio GitHub Pages</div>
+          <div class="project-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <p class="project-desc">
+          Portfolio personnel hébergé sur GitHub Pages. Page de présentation publique accessible via bellox1.github.io.
+        </p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-html"></span> HTML / CSS
+          </div>
+          <div class="project-stats">
+            <span class="project-stat">⭐ 0</span>
+            <span class="project-stat">🍴 0</span>
+          </div>
+        </div>
+      </a>
+ 
+    </div>
+ 
+    <!-- ALL REPOS MINI -->
+    <div class="section-header reveal" style="margin-top:40px; margin-bottom:24px;">
+      <span class="section-num">+</span>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;">Tous les repositories (32 au total)</h3>
+    </div>
+    <div class="repos-grid reveal">
+      <a href="https://github.com/Bellox1/validEtu" target="_blank" class="repo-mini">
+        <div class="repo-mini-name">validEtu</div>
+        <div class="repo-mini-footer">
+          <span class="lang-dot lang-ts"></span>
+          <span style="font-size:0.7rem;color:var(--muted)">TypeScript</span>
+        </div>
+      </a>
+      <a href="https://github.com/Bellox1" target="_blank" class="repo-mini">
+        <div class="repo-mini-name">bellox1 (README profile)</div>
+        <div class="repo-mini-footer">
+          <span class="lang-dot" style="background:#34d399"></span>
+          <span style="font-size:0.7rem;color:var(--muted)">Markdown</span>
+        </div>
+      </a>
+      <a href="https://github.com/Bellox1" target="_blank" class="repo-mini">
+        <div class="repo-mini-name">+ 27 autres repositories</div>
+        <div class="repo-mini-footer">
+          <span style="font-size:0.7rem;color:var(--muted)">Voir sur GitHub →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── FUN FACTS ── -->
+<section>
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">04.</span>
+      <h2 class="section-title">Fun Facts</h2>
+    </div>
+    <div class="facts-row">
+      <div class="fact-item reveal">
+        <span class="fact-emoji">🎧</span>
+        <span>Je code mieux avec de la musique — la playlist fait partie de l'architecture.</span>
+      </div>
+      <div class="fact-item reveal">
+        <span class="fact-emoji">⚡</span>
+        <span>Toujours curieux d'apprendre de nouvelles technos — chaque semaine, un nouvel outil à explorer.</span>
+      </div>
+      <div class="fact-item reveal">
+        <span class="fact-emoji">🌍</span>
+        <span>Fan des projets pratiques qui résolvent de vrais problèmes — code utile avant tout.</span>
+      </div>
+      <div class="fact-item reveal">
+        <span class="fact-emoji">🏠</span>
+        <span>J'ai créé une vraie plateforme immobilière avec Laravel — SpeedHome connecte propriétaires et locataires.</span>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">05.</span>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:mantinoubello123@gmail.com" class="contact-card reveal">
+        <div class="contact-icon icon-email">✉️</div>
+        <div class="contact-info">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">mantinoubello123@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://github.com/Bellox1" target="_blank" class="contact-card reveal">
+        <div class="contact-icon icon-gh">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#a78bfa"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </div>
+        <div class="contact-info">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">github.com/Bellox1</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/mantinoubello" target="_blank" class="contact-card reveal">
+        <div class="contact-icon icon-li">💼</div>
+        <div class="contact-info">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">in/mantinoubello</span>
+        </div>
+      </a>
+      <a href="https://wa.me/2290146862536" target="_blank" class="contact-card reveal">
+        <div class="contact-icon icon-wa">📱</div>
+        <div class="contact-info">
+          <span class="contact-label">WhatsApp</span>
+          <span class="contact-value">+229 01 46 86 25 36</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── RÉSUMÉ ── -->
+<div class="wrapper">
+  <div id="summary" class="reveal">
+    <div class="divider"></div>
+    <p class="summary-text">
+      Matinou Bello est un <em>développeur Full Stack polyvalent</em> basé à Cotonou, Bénin,
+      capable de couvrir l'intégralité du cycle de développement — du design de base de données
+      au rendu frontend, en passant par l'API et la logique métier. Avec <em>32 repositories
+      publics</em>, une maîtrise du stack PHP/Laravel côté serveur et TypeScript/React côté client,
+      et une curiosité active pour le mobile (Dart/Flutter) et l'intelligence artificielle,
+      il incarne le profil du développeur moderne adapté aux défis africains et globaux.
+      Son projet phare SpeedHome démontre sa capacité à concevoir des <em>architectures
+      applicatives complètes</em> avec gestion des rôles, workflows de modération et interfaces
+      multi-utilisateurs. Étudiant en L3 Architecture Logicielle à ESGIS Bénin (2025-2026),
+      il combine rigueur académique et <em>pratique terrain</em> au service de projets concrets.
+    </p>
+  </div>
+</div>
+ 
+<!-- ── FOOTER ── -->
+<footer>
+  <p>✦ Matinou Bello — Portfolio généré le 18 mars 2026 ✦ bellox1 sur GitHub ✦</p>
+</footer>
+ 
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.07) + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+ 
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+ 
