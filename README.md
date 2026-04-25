@@ -1,7 +1,7 @@
 # 👋 Salut, moi c’est Matinou Bello
 
 Je suis **Développeur Full Stack / Architecture Logicielle**.  
-Passionné par la conception de **systèmes scalables**, le **mobile**, et l'optimisation des **flux de données**.
+Passionné par la conception de **systèmes scalables** et l'optimisation des **flux de données**.
 
 ---
 
