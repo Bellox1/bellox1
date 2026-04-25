@@ -26,6 +26,5 @@ Passionné par la conception de **systèmes scalables**, le **mobile**, et l'opt
 ---
 
 ## 😄 Fun facts
-- Je code mieux avec de la musique 🎧  
 - Toujours curieux d’apprendre de nouvelles technos ⚡  
 - Fan des projets pratiques qui résolvent de vrais problèmes 🌍
