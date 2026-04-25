@@ -12,9 +12,10 @@ Passionné par la conception de **systèmes scalables** et l'optimisation des **
 
 ---
 
-## 🌱 Actuellement en apprentissage
+## 🌱 Actuellement
 - Approfondir **React / Angular**  
-- Explorer des pratiques avancées en **architecture logicielle**  
+- Explorer des pratiques avancées en **architecture logicielle**
+- Développer mes compétences de base en **Dart** et **React Native**
 - Découvrir l’**IA appliquée au développement**
 
 ---
