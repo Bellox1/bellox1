@@ -897,9 +897,18 @@
         padding: 20px;
       }
     }
-    @media(max-width:768px) {
-      .skills-grid { grid-template-columns: 1fr; }
+    @media(max-width:1024px) {
+      .skills-grid { grid-template-columns: 1fr !important; }
+      .learning-strip { grid-column: span 1 !important; }
       .gh-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width:480px) {
+      .skill-card { padding: 18px; }
+      .icons-grid { gap: 6px; }
+      .icon-pill { min-width: 0; flex: 1 1 calc(33.333% - 6px); padding: 8px 10px; }
+      .icon-pill img { width: 22px; height: 22px; }
+      .icon-pill span { font-size: .5rem; }
+      .learn-pill { padding: 6px 10px; font-size: .7rem; }
     }
   </style>
 </head>
