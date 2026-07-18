@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matinou Bello — Développeur Full Stack & Concepteur de Solutions Digitales</title>
+  <title>Matinou Bello — Développeur Full Stack & Architecte Logiciel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -647,24 +647,189 @@
     .icon-pill img { width: 26px; height: 26px; }
     .icon-pill span { font-size: .55rem; font-weight: 600; color: var(--text3); white-space: nowrap; }
 
-    .learning-strip { grid-column: span 2; background: var(--bg2); border: 1px dashed var(--border2); border-radius: var(--r2); padding: 26px; }
+    .learning-strip { grid-column: span 2; background: var(--bg2); border: 1px solid rgba(255,80,80,.2); border-radius: var(--r2); padding: 26px; }
+    .learning-strip .learn-pills { display: flex; flex-wrap: wrap; gap: 8px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .4s ease, opacity .3s ease, margin .3s ease; margin-top: 0; }
+    .learning-strip:hover .learn-pills { max-height: 200px; opacity: 1; margin-top: 14px; }
     .learn-pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .learn-pill { display: flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 100px; background: var(--bg3); border: 1px solid var(--border); font-size: .76rem; color: var(--text2); }
+    .learn-pill img { width: 14px; height: 14px; }
 
-    /* PROJECTS */
-    .pgrid-2x1 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px; margin-top: 40px; }
-    .pgrid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
-    .pgrid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
-    .pcard { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r3); overflow: hidden; display: flex; flex-direction: column; transition: all .3s; }
-    .pcard:hover { transform: translateY(-5px); border-color: var(--border2); box-shadow: var(--sh3); }
-    .pcard-img-wrap { position: relative; overflow: hidden; }
-    .pcard-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; transition: transform .4s; }
-    .pcard-lang-badge { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,.7); padding: 4px 10px; border-radius: 100px; font-size: .6rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 5px; }
-    .pcard-body { padding: 22px; flex: 1; display: flex; flex-direction: column; gap: 9px; }
-    .pcard-name { font-family: 'Instrument Serif', serif; font-size: 1.2rem; }
-    .pcard-desc { font-size: .8rem; color: var(--text2); line-height: 1.6; }
-    .ptags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ptag { padding: 3px 8px; border-radius: 100px; font-size: .6rem; background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
+    /* PROJECTS - DYNAMIC BENTO DESIGN */
+    .wrap-projects {
+      width: 94vw;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 36px);
+      position: relative;
+      z-index: 1;
+    }
+    .projects-dynamic-layout {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .p-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .p-row-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    /* VERTICAL DESIGN CARD */
+    .p-design-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.003) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .p-design-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124, 106, 245, 0.25);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 106, 245, 0.08);
+    }
+    .p-design-card .pcard-img-wrap {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .p-design-card .pcard-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .p-design-card:hover .pcard-img {
+      transform: scale(1.03);
+    }
+    .p-design-card .pcard-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    /* SPOTLIGHT CARD (Horizontal - spans full width) */
+    .p-spotlight-card {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 32px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.003) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 24px;
+      padding: 22px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      align-items: center;
+      position: relative;
+    }
+    .p-spotlight-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124, 106, 245, 0.25);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 106, 245, 0.08);
+    }
+    .p-spotlight-card .pcard-img-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .p-spotlight-card .pcard-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .p-spotlight-card:hover .pcard-img {
+      transform: scale(1.03);
+    }
+    .p-spotlight-card .pcard-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* CARD SUBELEMENTS */
+    .pcard-lang-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,.6);
+      border: 1px solid rgba(255,255,255,.07);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: .62rem;
+      font-weight: 700;
+      color: #fff;
+      z-index: 2;
+    }
+    .pcard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .pcard-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .pcard-arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--accent);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .p-design-card:hover .pcard-arrow,
+    .p-spotlight-card:hover .pcard-arrow {
+      background: var(--accent);
+      color: #000;
+      transform: rotate(45deg);
+      border-color: var(--accent);
+    }
+    .pcard-desc {
+      font-size: 0.8rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+    .ptags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .ptag {
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: .62rem;
+      background: var(--bg3);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
 
     /* GITHUB STATS */
     .gh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
@@ -686,11 +851,18 @@
     .fact-txt { font-size: .85rem; color: var(--text2); line-height: 1.65; }
 
     /* CONTACT */
-    .contact-section { background: var(--bg1); padding: var(--space-2xl) 0; position: relative; overflow: hidden; }
+    .contact-section {
+      background:
+        linear-gradient(to bottom, rgba(10,10,15,0.72) 0%, rgba(10,10,15,0.88) 100%),
+        url('https://i.pinimg.com/736x/e9/65/5a/e9655a2c399d21c2121699e468433a02.jpg') center/cover no-repeat;
+      padding: var(--space-2xl) 0 0;
+      position: relative;
+      overflow: hidden;
+    }
     .contact-section::before {
       content: ''; position: absolute;
-      width: min(600px,90vw); height: min(600px,90vw);
-      background: radial-gradient(circle, rgba(124,106,245,.09) 0%, transparent 65%);
+      width: min(700px,90vw); height: min(700px,90vw);
+      background: radial-gradient(circle, rgba(124,106,245,.12) 0%, transparent 65%);
       top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
     }
     .contact-title { font-family: 'Instrument Serif', serif; font-size: clamp(1.9rem,5vw,4rem); font-weight: 400; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 12px; }
@@ -705,18 +877,28 @@
     .ccard-val { font-size: .82rem; color: var(--text); font-weight: 600; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 170px; }
 
     /* CONTACT & FOOTER */
-    .contact-section { background: var(--bg1); padding: var(--space-2xl) 0; text-align: center; }
+    /* contact-section background handled above */
     .contact-title { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; margin-bottom: 12px; }
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 40px; }
     .ccard { background: var(--bg2); border: 1px solid var(--border); padding: 20px; border-radius: var(--r2); display: flex; align-items: center; gap: 15px; text-align: left; }
-    footer { padding: 30px; border-top: 1px solid var(--border); text-align: center; font-size: .7rem; color: var(--text3); }
+    footer { padding: 24px 30px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-size: .7rem; color: var(--text3); background: transparent; width: 100%; box-sizing: border-box; }
 
     .reveal { opacity: 0; transform: translateY(20px); transition: .6s; }
     .reveal.in { opacity: 1; transform: none; }
 
+    @media(max-width:960px) {
+      .p-row-2, .p-row-3 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .p-spotlight-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+      }
+    }
     @media(max-width:768px) {
       .skills-grid { grid-template-columns: 1fr; }
-      .pgrid-2x1, .pgrid-3, .pgrid-2 { grid-template-columns: 1fr; }
       .gh-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -733,8 +915,12 @@
       </div>
       <div class="mob-links">
         <a href="#skills" onclick="closeMob()"><span data-fr>Compétences</span><span data-en>Skills</span></a>
+        <a href="#journey" onclick="closeMob()"><span data-fr>Parcours</span><span data-en>Journey</span></a>
         <a href="#projects" onclick="closeMob()"><span data-fr>Projets</span><span data-en>Projects</span></a>
         <a href="#contact" onclick="closeMob()">Contact</a>
+        <a href="CV.pdf" download="CV_BELLO_Matinou.pdf" onclick="closeMob()" style="color: var(--accent2); margin-top: 10px;">
+          <span data-fr>Télécharger CV (PDF)</span><span data-en>Download CV (PDF)</span>
+        </a>
       </div>
       <div class="mob-footer">
         <div class="mob-lang">
@@ -754,8 +940,10 @@
       </a>
       <ul class="nav-links">
         <li><a href="#skills" data-fr>Compétences</a><a href="#skills" data-en>Skills</a></li>
+        <li><a href="#journey" data-fr>Parcours</a><a href="#journey" data-en>Journey</a></li>
         <li><a href="#projects" data-fr>Projets</a><a href="#projects" data-en>Projects</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="CV.pdf" download="CV_BELLO_Matinou.pdf" style="color: var(--accent2);"><span data-fr>Mon CV (PDF)</span><span data-en>My CV (PDF)</span></a></li>
       </ul>
       <div class="nav-right">
         <div class="lang-toggle">
@@ -772,23 +960,23 @@
     <div class="wrap">
       <div class="hero-layout">
         <div>
-          <div class="hero-eyebrow">
-            <span class="dot2"></span>
-            <span data-fr>Développeur Full Stack</span><span data-en>Full Stack Developer</span>
-          </div>
           <h1 class="hero-name">Matinou<br><span class="last">Bello.</span></h1>
           <p class="hero-role">
             <strong data-fr>Développeur Full Stack</strong><strong data-en>Full Stack Developer</strong>
             &nbsp;·&nbsp; <span data-fr>Conception d'Architecture Logicielle</span><span data-en>Software Architecture Design</span>
           </p>
           <p class="hero-desc" data-fr>
-            Développeur Full Stack passionné par la conception de solutions digitales robustes. Je conçois et développe des applications web et mobile de bout en bout, avec une vision architecturale qui garantit scalabilité et performance.
+            Développeur Web Full Stack junior diplômé en Architecture Logicielle à ESGIS-Bénin. Passionné par la conception et le développement d'applications web robustes et performantes, avec une expertise en PHP (Laravel) et Node.js.
           </p>
           <p class="hero-desc" data-en>
-            Full Stack developer passionate about building robust digital solutions. I design and develop end-to-end web and mobile applications, with an architectural mindset ensuring scalability and performance.
+            Junior Web Full Stack Developer holding a degree in Software Architecture from ESGIS-Benin. Passionate about designing and developing robust, high-performance web applications, with core expertise in PHP (Laravel) and Node.js.
           </p>
           <div class="hero-actions">
-            <a href="https://github.com/Bellox1" target="_blank" class="btn btn-primary">GitHub @Bellox1</a>
+            <a href="CV.pdf" download="CV_BELLO_Matinou.pdf" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span data-fr>Télécharger mon CV</span><span data-en>Download CV</span>
+            </a>
+            <a href="https://github.com/Bellox1" target="_blank" class="btn btn-ghost">GitHub @Bellox1</a>
             <a href="#contact" class="btn btn-ghost"><span data-fr>Me contacter</span><span data-en>Contact me</span></a>
           </div>
           <div class="hero-chips">
@@ -811,8 +999,8 @@
 
       <div class="stats-row reveal">
         <div class="stat-c"><div class="stat-big repo-count">—</div><div class="stat-sm" data-fr>Repositories</div><div class="stat-sm" data-en>Repositories</div></div>
-        <div class="stat-c"><div class="stat-big">6<em>+</em></div><div class="stat-sm" data-fr>Projets livrés</div><div class="stat-sm" data-en>Projects delivered</div></div>
-        <div class="stat-c"><div class="stat-big">12<em>+</em></div><div class="stat-sm" data-fr>Technologies</div><div class="stat-sm" data-en>Technologies</div></div>
+        <div class="stat-c"><div class="stat-big">8<em>+</em></div><div class="stat-sm" data-fr>Projets livrés</div><div class="stat-sm" data-en>Projects delivered</div></div>
+        <div class="stat-c"><div class="stat-big">18<em>+</em></div><div class="stat-sm" data-fr>Technologies</div><div class="stat-sm" data-en>Technologies</div></div>
         <div class="stat-c"><div class="stat-big">Full</div><div class="stat-sm">Stack</div></div>
 
       </div>
@@ -834,27 +1022,30 @@
         <div class="skill-card reveal">
           <div class="skill-card-head">Frontend Architecture</div>
           <div class="icons-grid">
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt=""><span>React</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt=""><span>TypeScript</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/angular/DD0031" alt=""><span>Angular</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/html5/E34F26" alt=""><span>HTML5</span></div>
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt=""><span>Tailwind</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt=""><span>JavaScript</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt=""><span>TypeScript</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt=""><span>React</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/angular/DD0031" alt=""><span>Angular</span></div>
           </div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-card-head">Backend & Data</div>
+          <div class="skill-card-head">Backend Development</div>
           <div class="icons-grid">
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/php/777BB4" alt=""><span>PHP</span></div>
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt=""><span>Laravel</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/php/777BB4" alt=""><span>PHP 8.x</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt=""><span>MySQL</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mongodb/47A248" alt=""><span>NoSQL</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/nodedotjs/339933" alt=""><span>Node.js</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/express/000000?style=flat&logoColor=white" alt=""><span>Express</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/python/3776AB" alt=""><span>Python</span></div>
           </div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-card-head">Mobile Solutions</div>
+          <div class="skill-card-head">Bases de données & Cloud</div>
           <div class="icons-grid">
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/flutter/02569B" alt=""><span>Flutter</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/dart/0175C2" alt=""><span>Dart</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt=""><span>React Native</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/sqlite/003B57" alt=""><span>SQLite</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt=""><span>MySQL</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/supabase/3ECF8E" alt=""><span>Supabase</span></div>
           </div>
         </div>
         <div class="skill-card reveal">
@@ -862,15 +1053,80 @@
           <div class="icons-grid">
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/git/F05032" alt=""><span>Git</span></div>
             <div class="icon-pill"><img src="https://cdn.simpleicons.org/docker/2496ED" alt=""><span>Docker</span></div>
-            <div class="icon-pill"><img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt=""><span>Bash</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/insomnia/5849b7" alt=""><span>API REST</span></div>
+            <div class="icon-pill"><img src="https://cdn.simpleicons.org/xml/000000?style=flat&logoColor=white" alt=""><span>XML</span></div>
           </div>
         </div>
         <div class="learning-strip reveal">
-          <div class="skill-card-head">R&D / Emerging Tech</div>
+          <div class="skill-card-head">Bases & en apprentissage</div>
           <div class="learn-pills">
-            <div class="learn-pill">IA & LLM Integration</div>
-            <div class="learn-pill">Clean Architecture Patterns</div>
-            <div class="learn-pill">Microservices</div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/c/03599C" alt=""><span>C</span></div>
+            <div class="learn-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="#239120"><circle cx="12" cy="12" r="11" fill="#239120"/><text x="12" y="16.5" text-anchor="middle" fill="white" font-family="sans-serif" font-size="10" font-weight="bold">C#</text></svg><span>C#</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/cplusplus/00599C" alt=""><span>C++</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/dart/0175C2" alt=""><span>Dart</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/flutter/02569B" alt=""><span>Flutter</span></div>
+            <div class="learn-pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt=""><span>React Native</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ JOURNEY / PARCOURS SECTION ══════ -->
+  <section id="journey" class="section">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="s-label">02 — <span data-fr>Parcours </span><span data-en>Journey</span></p>
+        <h2 class="s-title" data-fr>Formation & Expérience</h2>
+        <h2 class="s-title" data-en>Education & Experience</h2>
+      </div>
+      <div class="skills-grid" style="margin-top: 40px;">
+        <!-- EXPÉRIENCE -->
+        <div class="skill-card reveal">
+          <div class="skill-card-head" style="color: var(--accent); font-size: 0.75rem;"><span data-fr>Expérience Professionnelle</span><span data-en>Professional Experience</span></div>
+          
+          <div style="display: flex; flex-direction: column; gap: 24px; margin-top: 16px;">
+            <!-- ANYXTECH -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
+                <h3 style="font-size: 1.1rem; font-family: 'Instrument Serif', serif; font-weight: 500;">Stagiaire Développeur Full Stack</h3>
+                <span class="chip" style="font-size: 0.65rem; padding: 3px 8px; color: var(--accent3); border-color: rgba(91, 224, 168, .25); background: rgba(91, 224, 168, .1);">Mars 2026 – Mai 2026</span>
+              </div>
+              <h4 style="font-size: 0.8rem; color: var(--text3); font-weight: 600; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.05em;">ANYXTECH</h4>
+              <ul style="margin-top: 10px; padding-left: 20px; font-size: 0.8rem; color: var(--text2); display: flex; flex-direction: column; gap: 6px;">
+                <li data-fr>Intégration de l'authentification Google et amélioration des fonctionnalités d'une application de gestion d'élevage.</li>
+                <li data-en>Integration of Google authentication and feature enhancements for a livestock management application.</li>
+                <li data-fr>Refonte d'un site hôtelier, mise en place d'une architecture multi-tenant et déploiement sur un environnement de test.</li>
+                <li data-en>Redesign of a hotel website, implementation of a multi-tenant architecture and deployment on a testing environment.</li>
+                <li data-fr>Développement de modules métier (Restaurant, Comptabilité générale) avec intégration d'IA pour l'automatisation des processus.</li>
+                <li data-en>Development of business modules (Restaurant, General accounting) with AI integration for process automation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORMATION -->
+        <div class="skill-card reveal">
+          <div class="skill-card-head" style="color: var(--accent2); font-size: 0.75rem;"><span data-fr>Formation Académique</span><span data-en>Academic Training</span></div>
+          
+          <div style="display: flex; flex-direction: column; gap: 24px; margin-top: 16px;">
+            <!-- ESGIS-BENIN -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
+                <h3 style="font-size: 1.1rem; font-family: 'Instrument Serif', serif; font-weight: 500;"><span data-fr>Licence en Architecture Logicielle</span><span data-en>Bachelor's in Software Architecture</span></h3>
+                <span class="chip" style="font-size: 0.65rem; padding: 3px 8px;">2023 - 2026</span>
+              </div>
+              <h4 style="font-size: 0.8rem; color: var(--text3); font-weight: 600; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.05em;">ESGIS-BENIN</h4>
+            </div>
+
+            <!-- CS LE VERGER -->
+            <div style="border-top: 1px solid var(--border); padding-top: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
+                <h3 style="font-size: 1.1rem; font-family: 'Instrument Serif', serif; font-weight: 500;"><span data-fr>Baccaléauréat Série D</span><span data-en>High School Diploma (Série D)</span></h3>
+                <span class="chip" style="font-size: 0.65rem; padding: 3px 8px;">2022 - 2023</span>
+              </div>
+              <h4 style="font-size: 0.8rem; color: var(--text3); font-weight: 600; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.05em;">CS LE VERGER</h4>
+            </div>
           </div>
         </div>
       </div>
@@ -878,125 +1134,180 @@
   </section>
 
   <section id="projects" class="section">
-    <div class="wrap">
+    <div class="wrap-projects">
       <div class="proj-header reveal">
         <div>
-          <p class="s-label">02 — <span data-fr>Projets</span><span data-en>Projects</span></p>
-          <h2 class="s-title" data-fr>Expertise en Architecture</h2>
-          <h2 class="s-title" data-en>Architectural Expertise</h2>
+          <p class="s-label">03 — <span data-fr>Projets</span><span data-en>Projects</span></p>
+          <h2 class="s-title" data-fr>Projets Réalisés</h2>
+          <h2 class="s-title" data-en>Key Projects</h2>
         </div>
-        <a href="https://github.com/Bellox1?tab=repositories" target="_blank" class="all-btn">
-          <span data-fr>Portfolio GitHub (<span class="repo-count">—</span>)</span>
-          <span data-en>GitHub Portfolio (<span class="repo-count">—</span>)</span>
-        </a>
+
       </div>
 
-      <!-- MAIN GRID -->
-      <div class="pgrid-2x1">
-        <!-- SPEEDHOME -->
-        <a href="https://github.com/Bellox1/SpeedHome" target="_blank" class="pcard reveal">
+      <div class="projects-dynamic-layout">
+
+        <!-- ── SPOTLIGHT (1 projet pleine largeur) ── -->
+        <a href="https://anatomy3d-ten.vercel.app" target="_blank" class="p-spotlight-card reveal">
           <div class="pcard-img-wrap">
-            <img class="pcard-img" src="https://i.pinimg.com/1200x/97/37/ad/9737adff2ae5a2bbc241978a67323281.jpg">
-            <div class="pcard-lang-badge">Laravel 12 · Blade</div>
+            <img class="pcard-img" src="projets/anatomy.png" alt="Anatomy 3D">
+            <div class="pcard-lang-badge">React (Three.js) · Laravel API</div>
           </div>
           <div class="pcard-body">
             <div class="pcard-top">
-              <span class="pcard-name">SpeedHome Architecture</span>
+              <span class="pcard-name">Anatomy_3D</span>
               <div class="pcard-arrow">↗</div>
             </div>
-            <p class="pcard-desc" data-fr>Solutions d'entreprise pour la gestion immobilière. Backend multi-tenant avec dashboards analytiques et workflows d'approbation critiques.</p>
-            <p class="pcard-desc" data-en>Enterprise solutions for real estate management. Multi-tenant backend with analytical dashboards and critical approval workflows.</p>
+            <p class="pcard-desc" data-fr>Plateforme de visualisation 3D et d'apprentissage assisté par IA de l'anatomie humaine, destinée aux étudiants en médecine. Expérience immersive avec modèles 3D interactifs.</p>
+            <p class="pcard-desc" data-en>3D anatomy visualization and AI-assisted learning platform for medical students. Immersive experience with interactive 3D models.</p>
             <div class="ptags">
-              <span class="ptag">Laravel</span><span class="ptag">PostgreSQL</span><span class="ptag">Clean Logic</span>
+              <span class="ptag">React (Three.js)</span><span class="ptag">Laravel API</span><span class="ptag">MySQL</span><span class="ptag">IA Integration</span>
             </div>
           </div>
         </a>
 
-        <!-- CERTIFYPRO -->
-        <a href="https://valide-etu.vercel.app" target="_blank" class="pcard reveal d1">
-          <div class="pcard-img-wrap">
-            <img class="pcard-img" src="https://i.pinimg.com/1200x/57/29/d7/5729d74ece1df803fe31eba5dc2adc9d.jpg">
-            <div class="pcard-lang-badge">TypeScript · React</div>
-          </div>
-          <div class="pcard-body">
-            <div class="pcard-top">
-              <span class="pcard-name">CertifyPro Engine</span>
-              <div class="pcard-arrow">↗</div>
+        <!-- ── RANGÉE DE 3 ── -->
+        <div class="p-row-3">
+          <a href="https://secure-vault.alwaysdata.net" target="_blank" class="p-design-card reveal">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/securevault.png" alt="SecureVault">
+              <div class="pcard-lang-badge">HTML · JS · SQLite</div>
             </div>
-            <p class="pcard-desc" data-fr>Plateforme SaaS de certification professionnelle. Moteur de validation asynchrone et architecture modulable.</p>
-            <p class="pcard-desc" data-en>Professional certification SaaS platform. Asynchronous validation engine and modular architecture.</p>
-            <div class="ptags">
-              <span class="ptag">TypeScript</span><span class="ptag">SaaS</span><span class="ptag">Vercel</span>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">SecureVault</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Coffre-fort de mots de passe Zero-Knowledge avec extension Chrome.</p>
+              <p class="pcard-desc" data-en>Zero-Knowledge password vault with Chrome browser extension.</p>
+              <div class="ptags">
+                <span class="ptag">Cryptography</span><span class="ptag">Zero-Knowledge</span><span class="ptag">SQLite</span>
+              </div>
             </div>
-          </div>
-        </a>
-      </div>
+          </a>
+          <a href="https://net-stream-coral.vercel.app" target="_blank" class="p-design-card reveal d1">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/netstream.png" alt="NetStream">
+              <div class="pcard-lang-badge">React · Tailwind CSS</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">NetStream</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Plateforme de streaming d'animés avec catalogue et lecteur responsive.</p>
+              <p class="pcard-desc" data-en>Anime streaming platform with a responsive catalog and media player.</p>
+              <div class="ptags">
+                <span class="ptag">React</span><span class="ptag">Tailwind CSS</span><span class="ptag">API REST</span>
+              </div>
+            </div>
+          </a>
+          <a href="https://eventvote.alwaysdata.net" target="_blank" class="p-design-card reveal d2">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/eventvote.png" alt="EventVote">
+              <div class="pcard-lang-badge">Laravel · MySQL</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">EventVote</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Plateforme de vote événementiel avec paiement FedaPay intégré.</p>
+              <p class="pcard-desc" data-en>Event voting system with integrated FedaPay payment gateway.</p>
+              <div class="ptags">
+                <span class="ptag">Laravel</span><span class="ptag">MySQL</span><span class="ptag">FedaPay</span>
+              </div>
+            </div>
+          </a>
+        </div>
 
-      <!-- SECONDARY GRID -->
-      <div class="pgrid-3">
-        <!-- NONVI -->
-        <a href="https://github.com/Bellox1/nonvi_voyage_plus" target="_blank" class="pcard reveal">
-          <div class="pcard-body">
-            <span class="pcard-name">Nonvi ERP</span>
-            <p class="pcard-desc" data-fr>Système critique de gestion de transport.</p>
-            <p class="pcard-desc" data-en>Critical transportation management system.</p>
-            <div class="ptags"><span class="ptag">Laravel</span><span class="ptag">API</span></div>
-          </div>
-        </a>
-        <!-- E-COMMERCE -->
-        <a href="https://github.com/Bellox1/e-commerce" target="_blank" class="pcard reveal d1">
-          <div class="pcard-body">
-            <span class="pcard-name">Modern Storefront</span>
-            <p class="pcard-desc" data-fr>Solution e-commerce haute performance.</p>
-            <p class="pcard-desc" data-en>High-performance e-commerce solution.</p>
-            <div class="ptags"><span class="ptag">Next.js 14</span></div>
-          </div>
-        </a>
-        <!-- ARCHI -->
-        <a href="https://github.com/Bellox1" target="_blank" class="pcard reveal d2">
-          <div class="pcard-body">
-            <span class="pcard-name">Architecture Lab</span>
-            <p class="pcard-desc" data-fr>R&D sur les design patterns avancés.</p>
-            <p class="pcard-desc" data-en>R&D on advanced design patterns.</p>
-            <div class="ptags"><span class="ptag">R&D</span></div>
-          </div>
-        </a>
-      </div>
+        <!-- ── RANGÉE DE 2 ── -->
+        <div class="p-row-2">
+          <a href="https://github.com/Bellox1/loganalyzer" target="_blank" class="p-design-card reveal">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/loganalyser.png" alt="LogAnalyzer">
+              <div class="pcard-lang-badge">Python · CLI</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">LogAnalyzer Pro</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Outil CLI Python pour parser des logs HTTP serveur et générer des rapports automatisés.</p>
+              <p class="pcard-desc" data-en>Python CLI tool to parse HTTP server logs and generate automated reports.</p>
+              <div class="ptags">
+                <span class="ptag">Python</span><span class="ptag">Log Automation</span><span class="ptag">CLI</span>
+              </div>
+            </div>
+          </a>
+          <a href="https://github.com/Bellox1/learndash-academy-02" target="_blank" class="p-design-card reveal d1">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/Sell.png" alt="LearnDash Mockup">
+              <div class="pcard-lang-badge">Angular · Tailwind</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">LearnDash Academy</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Intégration pixel-perfect d'une maquette e-learning moderne et responsive avec routage dynamique Angular.</p>
+              <p class="pcard-desc" data-en>Pixel-perfect integration of a modern responsive e-learning mockup with Angular dynamic routing.</p>
+              <div class="ptags">
+                <span class="ptag">Angular</span><span class="ptag">Tailwind CSS</span>
+              </div>
+            </div>
+          </a>
+        </div>
 
-      <!-- BOTTOM GRID -->
-      <div class="pgrid-2">
-        <a href="https://github.com/Bellox1/skincare_app" target="_blank" class="pcard reveal">
-          <div class="pcard-body">
-            <span class="pcard-name">SkinCare Pro</span>
-            <p class="pcard-desc" data-fr>Application mobile de suivi dermatologique.</p>
-            <p class="pcard-desc" data-en>Mobile dermatological tracking application.</p>
-            <div class="ptags"><span class="ptag">Flutter</span><span class="ptag">BLoC</span></div>
-          </div>
-        </a>
-        <a href="https://github.com/Bellox1" target="_blank" class="pcard reveal d1">
-          <div class="pcard-body">
-            <span class="pcard-name">Strategic Development Hub</span>
-            <p class="pcard-desc" data-fr>Mon centre stratégique de contributions Open Source.</p>
-            <p class="pcard-desc" data-en>My strategic Open Source contribution hub.</p>
-            <div class="ptags"><span class="ptag">GitHub</span><span class="ptag">R&D</span></div>
-          </div>
-        </a>
+        <!-- ── RANGÉE DE 3 ── -->
+        <div class="p-row-3">
+          <a href="https://github.com/Bellox1/TP-NodeJS-Express" target="_blank" class="p-design-card reveal">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/Tp.png" alt="Node.js Express API">
+              <div class="pcard-lang-badge">Express.js · Node</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">TP-NodeJS-Express</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>API REST modulaire avec validation stricte et authentification sécurisée des utilisateurs.</p>
+              <p class="pcard-desc" data-en>Modular REST API with strict validation and secure user authentication.</p>
+              <div class="ptags">
+                <span class="ptag">Express.js</span><span class="ptag">Node.js</span><span class="ptag">JSON API</span>
+              </div>
+            </div>
+          </a>
+          <a href="https://github.com/Bellox1/DME" target="_blank" class="p-design-card reveal d1">
+            <div class="pcard-img-wrap">
+              <img class="pcard-img" src="projets/DME.png" alt="DME">
+              <div class="pcard-lang-badge">React · Laravel</div>
+            </div>
+            <div class="pcard-body">
+              <div class="pcard-top">
+                <span class="pcard-name">DME Hospital Management</span>
+                <div class="pcard-arrow">↗</div>
+              </div>
+              <p class="pcard-desc" data-fr>Gestion numérisée et sécurisée des dossiers médicaux pour établissements de santé.</p>
+              <p class="pcard-desc" data-en>Digitized and secure Electronic Medical Records for hospitals.</p>
+              <div class="ptags">
+                <span class="ptag">React</span><span class="ptag">Laravel</span><span class="ptag">Tailwind CSS</span><span class="ptag">Medical ERP</span>
+              </div>
+            </div>
+          </a>
+          <a href="https://github.com/Bellox1?tab=repositories" target="_blank" class="p-design-card reveal d2" style="background: linear-gradient(135deg, rgba(124,106,245,0.06) 0%, rgba(91,224,168,0.04) 100%); border-color: rgba(124,106,245,0.12); display:flex; align-items:center; justify-content:center; text-align:center; min-height:220px;">
+            <div class="pcard-body" style="align-items:center;">
+              <div style="font-size: 2rem; margin-bottom: 8px;">📁</div>
+              <span class="pcard-name" style="font-size:1.1rem;">Voir tous les projets</span>
+              <p class="pcard-desc">Retrouvez l'intégralité de mes projets open-source sur GitHub.</p>
+              <div class="pcard-arrow" style="margin-top:8px;">↗</div>
+            </div>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="section section-alt">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="s-label">Indicateurs</p>
-        <h2 class="s-title">GitHub Metrics</h2>
-      </div>
-      <div class="gh-grid reveal">
-        <img src="https://github-readme-stats.vercel.app/api?username=Bellox1&show_icons=true&theme=tokyonight&hide_border=true&bg_color=111115&title_color=7c6af5&text_color=f0eff5&icon_color=5be0a8&count_private=true">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Bellox1&layout=compact&theme=tokyonight&hide_border=true&bg_color=111115&title_color=7c6af5&text_color=f0eff5">
-      </div>
-    </div>
-  </section>
 
   <!-- ══════ FUN FACTS ══════ -->
   <section class="section">
@@ -1019,32 +1330,13 @@
           <div class="fact-emoji">
             <svg viewBox="0 0 24 24" fill="none" stroke="#5be0a8" stroke-width="1.8" width="20" height="20">
               <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
             </svg>
           </div>
-          <p class="fact-txt" data-fr>Fan des projets qui résolvent de vrais problèmes — le code utile avant tout.</p>
-          <p class="fact-txt" data-en>Big fan of projects that solve real problems — useful code above all.</p>
-        </div>
-        <div class="fact-row reveal">
-          <div class="fact-emoji">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#7c6af5" stroke-width="1.8" width="20" height="20">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <path d="M8 21h8M12 17v4"/>
-              <path d="M7 8h4m-4 4h10"/>
-            </svg>
-          </div>
-          <p class="fact-txt" data-fr>Background en architecture logicielle — je pense scalabilité et maintenabilité dès le premier commit.</p>
-          <p class="fact-txt" data-en>Software architecture background — I think scalability and maintainability from the very first commit.</p>
-        </div>
-        <div class="fact-row reveal">
-          <div class="fact-emoji">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#f5a76c" stroke-width="1.8" width="20" height="20">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M4.9 4.9c3.1 3.1 3.1 8.1 0 11.2M19.1 4.9c-3.1 3.1-3.1 8.1 0 11.2M12 2v20M2 12h20"/>
-            </svg>
-          </div>
-          <p class="fact-txt" data-fr>Basket-ball & Football — l'esprit d'équipe sur le terrain comme dans le code.</p>
-          <p class="fact-txt" data-en>Basketball & Football — teamwork on the field and in the code.</p>
+          <p class="fact-txt" data-fr>Sports et activités physiques, projets personnels, musique et animation vidéo.</p>
+          <p class="fact-txt" data-en>Sports and physical activities, personal projects, music and video animation.</p>
         </div>
       </div>
     </div>
@@ -1077,13 +1369,11 @@
           <div class="ccard-icon"><svg viewBox="0 0 24 24" fill="#f5a76c" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
           <div><div class="ccard-lbl">WhatsApp</div><div class="ccard-val">+229 01 46 86 25 36</div></div>
         </a>
-      </div>
     </div>
+    <footer>
+      © 2026 Matinou Bello · Développeur Full Stack · <a href="https://github.com/Bellox1" target="_blank" style="color:var(--accent)">@Bellox1</a>
+    </footer>
   </section>
-
-  <footer>
-    © 2026 Matinou Bello · Développeur Full Stack · <a href="https://github.com/Bellox1" target="_blank" style="color:var(--accent)">@Bellox1</a>
-  </footer>
 
   <script>
     function setLang(l) {
