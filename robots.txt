@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bellox1.github.io/bellox1/sitemap.xml
