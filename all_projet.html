@@ -56,6 +56,25 @@
       --r3: 24px;
     }
 
+    /* Thème : transition « rideau en coin » (pilotée en JS).
+       Le noir sort d'un coin du haut et recouvre la page ; le blanc sort d'un coin du bas. */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+    .theme-sweep {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: #0c0c0e;
+      transform: scale(0);
+      transform-origin: top left;
+      transition: transform .6s cubic-bezier(.65, 0, .35, 1);
+      will-change: transform;
+    }
+
     [data-theme="light"] {
       --bg: #f5f5f7;
       --bg1: #ffffff;
@@ -895,9 +914,44 @@
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
       themeToggle.addEventListener('click', () => {
-        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
+        const doc = document.documentElement;
+        const isLight = doc.getAttribute('data-theme') === 'light';
+        const next = isLight ? 'dark' : 'light';
+        const apply = () => {
+          doc.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        };
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          apply();
+          return;
+        }
+        if (document.querySelector('.theme-sweep')) return;
+
+        const dark = next === 'dark';
+        const sweep = document.createElement('div');
+        sweep.className = 'theme-sweep';
+        sweep.style.background = dark ? '#0c0c0e' : '#f5f5f7';
+        sweep.style.transformOrigin = dark ? 'top left' : 'bottom right';
+        document.body.appendChild(sweep);
+        void sweep.offsetHeight;
+
+        let done = false;
+        const finish = (applyTheme) => {
+          if (done) return;
+          done = true;
+          if (applyTheme) apply();
+          sweep.style.transform = 'scale(0)';
+          const removeSweep = () => sweep.remove();
+          sweep.addEventListener('transitionend', removeSweep, { once: true });
+          window.setTimeout(removeSweep, 700);
+        };
+
+        requestAnimationFrame(() => {
+          sweep.style.transform = 'scale(1)';
+          sweep.addEventListener('transitionend', () => finish(true), { once: true });
+          sweep.addEventListener('transitioncancel', () => finish(true));
+        });
+        window.setTimeout(() => finish(true), 700);
       });
     }
 
