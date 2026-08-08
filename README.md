@@ -30,9 +30,6 @@ Passionné par la conception de **systèmes scalables** et l'optimisation des **
 
 ---
 
-## Pofolio: bellox1.github.io/bellox1 
-
----
 ## 😄 Fun facts
 
 - Toujours curieux d’apprendre de nouvelles technos ⚡
