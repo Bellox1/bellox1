@@ -27,7 +27,7 @@ Passionné par la conception de **systèmes scalables** et l'optimisation des **
 
 - Email : mantinoubello123@gmail.com
 - GitHub : [bellox1](https://github.com/bellox1)
-- Portfolio : [bellox1.github.io](https://bellox1.github.io)
+- Portfolio : [bellox1.github.io/bellox1](https://bellox1.github.io/bellox1)
 
 ---
 
