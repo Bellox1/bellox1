@@ -1749,6 +1749,21 @@
         entries.forEach(e => e.target.classList.toggle('spin', e.isIntersecting));
       }, { threshold: 0.3 });
       posterObs.observe(poster);
+
+      const posterFrame = poster.querySelector('.poster-frame');
+      let posterPaused = false;
+      const setPosterPause = (p) => {
+        if (p !== posterPaused) {
+          posterPaused = p;
+          posterFrame.style.animationPlayState = p ? 'paused' : 'running';
+        }
+      };
+      const resumePoster = () => setPosterPause(false);
+      poster.addEventListener('pointerenter', () => setPosterPause(true));
+      poster.addEventListener('pointerdown', () => setPosterPause(true));
+      poster.addEventListener('pointerleave', resumePoster);
+      poster.addEventListener('pointerup', resumePoster);
+      poster.addEventListener('pointercancel', resumePoster);
     }
 
     const strip = document.querySelector('.learning-strip');
